@@ -13,7 +13,7 @@ void Help()
 
 int main(int argc, char* argv[])
 {
-	if (argc != 3)
+	if (argc != 2)
 	{
 		if (argc == 2 && argv[1] == HELP_OPTION)
 		{
@@ -37,4 +37,12 @@ int main(int argc, char* argv[])
 
 	MonteCarlo monteCarlo(iterations);
 
+	clock_t start = clock();
+	std::cout << monteCarlo.CalculatePi() << std::endl;
+	clock_t end = clock();
+
+	float runtime = (float)(end - start) / CLOCKS_PER_SEC;
+	std::cout << "Runtime: " << runtime << std::endl;
+
 	return 0;
+}

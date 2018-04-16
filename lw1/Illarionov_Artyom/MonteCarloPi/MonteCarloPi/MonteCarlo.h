@@ -12,6 +12,8 @@ public:
 	MonteCarlo() = default;
 	MonteCarlo(size_t iterations);
 
+	double CalculatePi();
+
 private:
 	size_t m_iterations;
 };
