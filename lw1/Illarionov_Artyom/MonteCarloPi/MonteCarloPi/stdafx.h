@@ -5,5 +5,6 @@
 #include <stdio.h>
 #include <tchar.h>
 #include <iostream>
+#include <vector>
 #include <memory>
 #include <time.h>

@@ -13,7 +13,7 @@ void Help()
 
 int main(int argc, char* argv[])
 {
-	if (argc != 2)
+	if (argc != 3)
 	{
 		if (argc == 2 && argv[1] == HELP_OPTION)
 		{
@@ -22,20 +22,21 @@ int main(int argc, char* argv[])
 		else
 		{
 			std::cout << ">Invalid count of arguments!" << std::endl;
-			Help();
+			Help();	
 		}
 		return 1;
 	}
 
 	size_t iterations = atoi(argv[1]);
+	size_t threads = atoi(argv[2]);
 
-	if (iterations < MIN_ITERATIONS)
+	if (iterations < MIN_ITERATIONS || threads < MIN_THREADS)
 	{
-		std::cout << "The number of iterations must be greater than zero!" << std::endl;
+		std::cout << "The number of iterations or threads must be greater than zero!" << std::endl;
 		return 1;
 	}
 
-	MonteCarlo monteCarlo(iterations);
+	MonteCarlo monteCarlo(iterations, threads);
 
 	clock_t start = clock();
 	std::cout << monteCarlo.CalculatePi() << std::endl;

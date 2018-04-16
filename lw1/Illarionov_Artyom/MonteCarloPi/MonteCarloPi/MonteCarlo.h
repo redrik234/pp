@@ -10,10 +10,14 @@ class MonteCarlo
 {
 public:
 	MonteCarlo() = default;
-	MonteCarlo(size_t iterations);
+	MonteCarlo(size_t iterations, size_t threads);
 
 	double CalculatePi();
 
 private:
 	size_t m_iterations;
+	size_t m_threads;
+	static size_t m_pointsInCircle;
+
+	static DWORD WINAPI CountPointInCircle(LPVOID lParam);
 };
