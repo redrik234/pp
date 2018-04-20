@@ -45,5 +45,6 @@ int main(int argc, char* argv[])
 	float runtime = (float)(end - start) / CLOCKS_PER_SEC;
 	std::cout << "Runtime: " << runtime << std::endl;
 
+	system("pause");
 	return 0;
 }

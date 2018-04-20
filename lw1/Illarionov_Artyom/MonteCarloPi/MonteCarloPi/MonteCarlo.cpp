@@ -21,8 +21,14 @@ double MonteCarlo::CalculatePi()
 	else
 	{
 		ThreadHandler handler;
-		std::vector<size_t> iterVec(m_threads - 1, m_iterations / (m_threads - 1));
-		iterVec.push_back(m_iterations % (m_threads - 1));
+		std::vector<size_t> iterVec(m_threads, m_iterations / m_threads);
+
+		size_t residue = m_iterations % m_threads;
+		for (size_t i = 0; i < residue; ++i)
+		{
+			++iterVec[i];
+		}
+
 		for (size_t &iter : iterVec)
 		{
 			handler.CreateThrd(CountPointInCircle, &iter);
