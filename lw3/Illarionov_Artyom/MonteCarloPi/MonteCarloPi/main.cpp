@@ -35,5 +35,8 @@ int main(int argc, char* argv[])
 
 	MonteCarlo monteCarlo(iterations);
 
+	std::cout << monteCarlo.CalculatePi() << std::endl;
+
+	system("pause");
 	return 0;
 }
