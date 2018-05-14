@@ -35,7 +35,12 @@ int main(int argc, char* argv[])
 
 	MonteCarlo monteCarlo(iterations);
 
-	std::cout << monteCarlo.CalculatePi() << std::endl;
+	clock_t start = clock();
+	std::cout << "Pi = " << monteCarlo.CalculatePi() << std::endl;
+	clock_t end = clock();
+
+	float runtime = (float)(end - start) / CLOCKS_PER_SEC;
+	std::cout << "Runtime:" << runtime << std::endl;
 
 	system("pause");
 	return 0;
