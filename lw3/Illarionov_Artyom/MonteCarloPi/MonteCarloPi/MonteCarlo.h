@@ -12,5 +12,5 @@ public:
 
 private:
 	size_t m_iterations;
-	size_t pointsInCircle;
+	static size_t pointsInCircle;
 };
