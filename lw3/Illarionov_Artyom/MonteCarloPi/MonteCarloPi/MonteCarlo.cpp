@@ -1,6 +1,6 @@
 #include "MonteCarlo.h"
-#include <random>
 #include "Point.h"
+#include "Random.h"
 
 MonteCarlo::MonteCarlo(size_t iterations)
 	:m_iterations(iterations)
@@ -10,12 +10,11 @@ MonteCarlo::MonteCarlo(size_t iterations)
 
 double MonteCarlo::CalculatePi()
 {
+	Random random;
+
 	for (size_t i = 0; i < m_iterations; ++i)
 	{
-		Point point(
-			(double)(rand()) / RAND_MAX * SQUARE_SIDE - SQUARE_SIDE / 2
-			, (double)(rand()) / RAND_MAX * SQUARE_SIDE - SQUARE_SIDE / 2
-		);
+		Point point = random.GeneratePoint(SQUARE_SIDE);
 
 		if (pow(point.GetX(), 2) + pow(point.GetY(), 2) <= R)
 		{
