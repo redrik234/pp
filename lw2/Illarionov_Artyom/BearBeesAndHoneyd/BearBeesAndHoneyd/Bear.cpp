@@ -8,7 +8,7 @@ Bear::Bear(HoneyPot & honeyPot)
 
 void Bear::EatHoney()
 {
-	std::cout << "-> Bear eats honey" << std::endl;
+	std::cout << "\n-> Bear eats honey \n" << std::endl;
 	while (!m_honeyPot.isEmpty())
 	{
 		m_honeyPot.popPortion();

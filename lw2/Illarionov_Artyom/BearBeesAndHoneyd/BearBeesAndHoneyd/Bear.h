@@ -7,5 +7,5 @@ public:
 	Bear(HoneyPot & honeyPot);
 	void EatHoney();
 private:
-	HoneyPot m_honeyPot;
+	HoneyPot & m_honeyPot;
 };

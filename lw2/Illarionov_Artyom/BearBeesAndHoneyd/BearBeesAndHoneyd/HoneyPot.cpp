@@ -3,13 +3,13 @@
 
 HoneyPot::HoneyPot(size_t potSize)
 	:m_potSize(potSize)
-	, m_portions(0)
+	,m_portions(0)
 {
 }
 
 bool HoneyPot::isEmpty() const
 {
-	return m_potSize == 0;
+	return m_portions == 0;
 }
 
 bool HoneyPot::isFull() const
