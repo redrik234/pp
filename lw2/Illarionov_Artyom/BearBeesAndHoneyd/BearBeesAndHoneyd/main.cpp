@@ -3,30 +3,47 @@
 #include "Bee.h"
 #include "HoneyPot.h"
 
+using namespace std;
+
 int main(int argc, char * argv[])
 {
 	size_t potSize = 5;
+	size_t beeCount = 10;
+
+	HANDLE signalToWakeUpBear = CreateEvent(NULL, TRUE, FALSE, NULL);
+	HANDLE signalForBeesToWork = CreateEvent(NULL, TRUE, TRUE, NULL);
+
+	HANDLE workingHours = CreateSemaphore(NULL, 1, 1, NULL);
+
 	HoneyPot honeyPot(potSize);
 
-	Bear bear(honeyPot);
+	Bear bear(honeyPot, signalToWakeUpBear, signalForBeesToWork);
 
-	Bee bee(honeyPot);
+	vector<unique_ptr<Bee>> beeSwarm;
 
-	while (!honeyPot.isFull())
+	for (size_t i = 0; i < beeCount; ++i)
 	{
-		bee.collectsAndBearsHoney();
+		beeSwarm.push_back(make_unique<Bee>(honeyPot, signalForBeesToWork, signalToWakeUpBear, workingHours));
 	}
 
-	bear.EatHoney();
+	vector<HANDLE> threads;
+	
+	for (auto & bee : beeSwarm)
+	{
+		threads.push_back(CreateThread(NULL, 0, Bee::actionInThread, bee.get(), 0, NULL));
+	}
+	threads.push_back(CreateThread(NULL, 0, Bear::actionInThread, &bear, 0, NULL));
 
-	if (honeyPot.isEmpty())
+	WaitForMultipleObjects(DWORD(threads.size()), threads.data(), TRUE, INFINITE);
+
+	for (auto & thread : threads)
 	{
-		std::cout << "!!! Honey pot is empty !!!" << std::endl;
+		CloseHandle(thread);
 	}
-	else
-	{
-		std::cout << "bad" << std::endl;
-	}
+	CloseHandle(signalForBeesToWork);
+	CloseHandle(signalToWakeUpBear);
+	CloseHandle(workingHours);
+
 	system("pause");
 	return 0;
 }
