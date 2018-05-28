@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "Bee.h"
 
-Bee::Bee(size_t id, HoneyPot & honeyPot, HANDLE signalForBeesToWork
-		, HANDLE signalToWakeUpBear, HANDLE workingHours)
+Bee::Bee(size_t id, HoneyPot & honeyPot, Event & signalForBeesToWork
+		, Event & signalToWakeUpBear, HANDLE workingHours)
 	:m_id(id)
 	,m_honeyPot(honeyPot)
 	,m_signalForBeesToWork(signalForBeesToWork)
@@ -15,7 +15,7 @@ void Bee::collectsAndBearsHoney()
 {
 	while (1)
 	{
-		WaitForSingleObject(m_signalForBeesToWork, INFINITE);
+		m_signalForBeesToWork.wait();
 		WaitForSingleObject(m_workingHours, INFINITE);
 		if (!m_honeyPot.isFull())
 		{
@@ -25,9 +25,9 @@ void Bee::collectsAndBearsHoney()
 
 		if (m_honeyPot.isFull())
 		{
-			ResetEvent(m_signalForBeesToWork);
+			m_signalForBeesToWork.off();
 			std::printf("-> Honey pot is full! Call the Kraken!!! #%zu\n", m_id);
-			SetEvent(m_signalToWakeUpBear);
+			m_signalToWakeUpBear.on();
 		}
 		ReleaseSemaphore(m_workingHours, 1, NULL);
 	}
