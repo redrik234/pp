@@ -3,6 +3,7 @@
 #include "Bee.h"
 #include "HoneyPot.h"
 #include "Event.h"
+#include "Semaphore.h"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ int main(int argc, char * argv[])
 	Event signalToWakeUpBear = Event(FALSE);
 	Event signalForBeesToWork = Event(TRUE);
 
-	HANDLE workingHours = CreateSemaphore(NULL, 1, 1, NULL);
+	Semaphore workingHours = Semaphore(1, 1);
 
 	HoneyPot honeyPot(potSize);
 
@@ -41,8 +42,6 @@ int main(int argc, char * argv[])
 	{
 		CloseHandle(thread);
 	}
-	CloseHandle(workingHours);
 
-	system("pause");
 	return 0;
 }

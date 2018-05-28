@@ -2,7 +2,7 @@
 #include "Bee.h"
 
 Bee::Bee(size_t id, HoneyPot & honeyPot, Event & signalForBeesToWork
-		, Event & signalToWakeUpBear, HANDLE workingHours)
+		, Event & signalToWakeUpBear, Semaphore & workingHours)
 	:m_id(id)
 	,m_honeyPot(honeyPot)
 	,m_signalForBeesToWork(signalForBeesToWork)
@@ -16,7 +16,7 @@ void Bee::collectsAndBearsHoney()
 	while (1)
 	{
 		m_signalForBeesToWork.wait();
-		WaitForSingleObject(m_workingHours, INFINITE);
+		m_workingHours.wait();
 		if (!m_honeyPot.isFull())
 		{
 			m_honeyPot.addPortion();
@@ -29,7 +29,7 @@ void Bee::collectsAndBearsHoney()
 			std::printf("-> Honey pot is full! Call the Kraken!!! #%zu\n", m_id);
 			m_signalToWakeUpBear.on();
 		}
-		ReleaseSemaphore(m_workingHours, 1, NULL);
+		m_workingHours.release(1);
 	}
 }
 

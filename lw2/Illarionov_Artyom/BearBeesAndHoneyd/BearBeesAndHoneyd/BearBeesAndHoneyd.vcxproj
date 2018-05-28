@@ -120,6 +120,7 @@
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="HoneyPot.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Semaphore.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +128,7 @@
     <ClInclude Include="Bee.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="HoneyPot.h" />
+    <ClInclude Include="Semaphore.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
