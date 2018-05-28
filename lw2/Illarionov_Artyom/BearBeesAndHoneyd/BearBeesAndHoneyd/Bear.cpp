@@ -14,14 +14,14 @@ void Bear::EatHoney()
 	{
 		WaitForSingleObject(m_signalToWakeUpBear, INFINITE);
 		
-		std::cout << "\n-> Bear eats honey \n" << std::endl;
+		std::printf("-> Bear eats honey \n");
 
 		while (!m_honeyPot.isEmpty())
 		{
 			m_honeyPot.popPortion();
 		}
 
-		std::cout << "\n-> Bear: Eat well! Now I can sleep\n" << std::endl;
+		std::printf("-> Bear: Eat well! Now I can sleep\n");
 
 		SetEvent(m_signalForBeesToWork);
 		ResetEvent(m_signalToWakeUpBear);

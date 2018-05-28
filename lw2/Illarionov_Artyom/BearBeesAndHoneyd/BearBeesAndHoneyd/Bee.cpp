@@ -1,9 +1,10 @@
 #include "stdafx.h"
 #include "Bee.h"
 
-Bee::Bee(HoneyPot & honeyPot, HANDLE signalForBeesToWork
+Bee::Bee(size_t id, HoneyPot & honeyPot, HANDLE signalForBeesToWork
 		, HANDLE signalToWakeUpBear, HANDLE workingHours)
-	:m_honeyPot(honeyPot)
+	:m_id(id)
+	,m_honeyPot(honeyPot)
 	,m_signalForBeesToWork(signalForBeesToWork)
 	,m_signalToWakeUpBear(signalToWakeUpBear)
 	,m_workingHours(workingHours)
@@ -19,13 +20,13 @@ void Bee::collectsAndBearsHoney()
 		if (!m_honeyPot.isFull())
 		{
 			m_honeyPot.addPortion();
-			std::cout << "\n-> Bee collects and bears one portion honey\n" << std::endl;
+			std::printf("-> Bee #%zu collects and bears one portion honey\n", m_id);
 		}
 
 		if (m_honeyPot.isFull())
 		{
 			ResetEvent(m_signalForBeesToWork);
-			std::cout << "\n-> Honey pot is full! Call the Kraken!!!" << std::endl;
+			std::printf("-> Honey pot is full! Call the Kraken!!! #%zu\n", m_id);
 			SetEvent(m_signalToWakeUpBear);
 		}
 		ReleaseSemaphore(m_workingHours, 1, NULL);

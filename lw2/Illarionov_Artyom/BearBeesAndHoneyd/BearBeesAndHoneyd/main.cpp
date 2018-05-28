@@ -7,8 +7,8 @@ using namespace std;
 
 int main(int argc, char * argv[])
 {
-	size_t potSize = 5;
-	size_t beeCount = 10;
+	size_t potSize = 20;
+	size_t beeCount = 30;
 
 	HANDLE signalToWakeUpBear = CreateEvent(NULL, TRUE, FALSE, NULL);
 	HANDLE signalForBeesToWork = CreateEvent(NULL, TRUE, TRUE, NULL);
@@ -23,7 +23,7 @@ int main(int argc, char * argv[])
 
 	for (size_t i = 0; i < beeCount; ++i)
 	{
-		beeSwarm.push_back(make_unique<Bee>(honeyPot, signalForBeesToWork, signalToWakeUpBear, workingHours));
+		beeSwarm.push_back(make_unique<Bee>(i + 1, honeyPot, signalForBeesToWork, signalToWakeUpBear, workingHours));
 	}
 
 	vector<HANDLE> threads;
