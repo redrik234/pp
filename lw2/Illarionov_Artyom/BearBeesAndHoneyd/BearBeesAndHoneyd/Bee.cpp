@@ -18,7 +18,7 @@ Bee::Bee(size_t id, HoneyPot & honeyPot, Event & signalForBeesToWork
 {
 }
 
-void Bee::collectsAndBearsHoney()
+void Bee::CollectsAndBearsHoney()
 {
 	std::mt19937 gen{ std::random_device()() };
 	std::uniform_int_distribution<int> uid(MIN_FLIGHT_TIME, MAX_FLIGHT_TIME);
@@ -31,28 +31,28 @@ void Bee::collectsAndBearsHoney()
 
 		Sleep(flightTime);
 
-		m_signalForBeesToWork.wait();
-		m_workingHours.wait();
+		m_signalForBeesToWork.Wait();
+		m_workingHours.Wait();
 
-		if (!m_honeyPot.isFull())
+		if (!m_honeyPot.IsFull())
 		{
-			m_honeyPot.addPortion();
+			m_honeyPot.AddPortion();
 			std::printf("-> Bee #%zu collects and bears one portion honey. Time spent on collecting honey: %u ms\n", m_id, flightTime);
 		}
 
-		if (m_honeyPot.isFull())
+		if (m_honeyPot.IsFull())
 		{
-			m_signalForBeesToWork.off();
+			m_signalForBeesToWork.Off();
 			std::printf("-> Honey pot is full! Call the Kraken!!! #%zu\n", m_id);
-			m_signalToWakeUpBear.on();
+			m_signalToWakeUpBear.On();
 		}
-		m_workingHours.release(1);
+		m_workingHours.Release(1);
 	}
 }
 
-DWORD WINAPI Bee::actionInThread(LPVOID lParameter)
+DWORD WINAPI Bee::ActionInThread(LPVOID lParameter)
 {
 	Bee bee = *(Bee*)lParameter;
-	bee.collectsAndBearsHoney();
+	bee.CollectsAndBearsHoney();
 	return 0;
 }

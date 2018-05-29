@@ -11,17 +11,17 @@ Event::~Event()
 	CloseHandle(m_event);
 }
 
-void Event::on()
+void Event::On()
 {
 	SetEvent(m_event);
 }
 
-void Event::off()
+void Event::Off()
 {
 	ResetEvent(m_event);
 }
 
-void Event::wait()
+void Event::Wait()
 {
 	WaitForSingleObject(m_event, INFINITE);
 }

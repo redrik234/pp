@@ -8,8 +8,8 @@ class Bee
 public: 
 	Bee(size_t id, HoneyPot & honeyPot, Event & signalForBeesToWork
 		, Event & signalToWakeUpBear, Semaphore & workingHours);
-	void collectsAndBearsHoney();
-	static DWORD WINAPI actionInThread(LPVOID lParameter);
+	void CollectsAndBearsHoney();
+	static DWORD WINAPI ActionInThread(LPVOID lParameter);
 private:
 	size_t m_id;
 	HoneyPot & m_honeyPot;

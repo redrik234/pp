@@ -11,12 +11,12 @@ Semaphore::~Semaphore()
 	CloseHandle(m_semaphore);
 }
 
-void Semaphore::wait()
+void Semaphore::Wait()
 {
 	WaitForSingleObject(m_semaphore, INFINITE);
 }
 
-void Semaphore::release(size_t releaseCount)
+void Semaphore::Release(size_t releaseCount)
 {
 	ReleaseSemaphore(m_semaphore, (LONG)releaseCount, NULL);
 }

@@ -6,11 +6,11 @@ public:
 
 	HoneyPot(size_t potSize);
 
-	bool isEmpty() const;
-	bool isFull() const;
+	bool IsEmpty() const;
+	bool IsFull() const;
 
-	void addPortion();
-	void popPortion();
+	void AddPortion();
+	void PopPortion();
 
 private:
 	size_t m_potSize;

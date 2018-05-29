@@ -12,23 +12,23 @@ void Bear::EatHoney()
 {
 	while (1)
 	{
-		m_signalToWakeUpBear.wait();
+		m_signalToWakeUpBear.Wait();
 		
 		std::printf("-> Bear eats honey \n");
 
-		while (!m_honeyPot.isEmpty())
+		while (!m_honeyPot.IsEmpty())
 		{
-			m_honeyPot.popPortion();
+			m_honeyPot.PopPortion();
 		}
 
 		std::printf("-> Bear: Eat well! Now I can sleep\n");
 
-		m_signalForBeesToWork.on();
-		m_signalToWakeUpBear.off();
+		m_signalForBeesToWork.On();
+		m_signalToWakeUpBear.Off();
 	}
 }
 
-DWORD WINAPI Bear::actionInThread(LPVOID lParameter)
+DWORD WINAPI Bear::ActionInThread(LPVOID lParameter)
 {
 	Bear bear = *(Bear*)lParameter;
 	bear.EatHoney();

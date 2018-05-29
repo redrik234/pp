@@ -4,6 +4,7 @@
 #include "HoneyPot.h"
 #include "Event.h"
 #include "Semaphore.h"
+#include "ThreadHandler.h"
 
 using namespace std;
 
@@ -28,20 +29,15 @@ int main(int argc, char * argv[])
 		beeSwarm.push_back(make_unique<Bee>(i + 1, honeyPot, signalForBeesToWork, signalToWakeUpBear, workingHours));
 	}
 
-	vector<HANDLE> threads;
+	ThreadHandler handler;
 	
 	for (auto & bee : beeSwarm)
 	{
-		threads.push_back(CreateThread(NULL, 0, Bee::actionInThread, bee.get(), 0, NULL));
+		handler.CreateThrd(Bee::ActionInThread, bee.get());	
 	}
-	threads.push_back(CreateThread(NULL, 0, Bear::actionInThread, &bear, 0, NULL));
+	handler.CreateThrd(Bear::ActionInThread, &bear);
 
-	WaitForMultipleObjects(DWORD(threads.size()), threads.data(), TRUE, INFINITE);
-
-	for (auto & thread : threads)
-	{
-		CloseHandle(thread);
-	}
+	handler.JoinAll();
 
 	return 0;
 }

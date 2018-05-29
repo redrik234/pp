@@ -7,22 +7,22 @@ HoneyPot::HoneyPot(size_t potSize)
 {
 }
 
-bool HoneyPot::isEmpty() const
+bool HoneyPot::IsEmpty() const
 {
 	return m_portions == 0;
 }
 
-bool HoneyPot::isFull() const
+bool HoneyPot::IsFull() const
 {
 	return m_portions == m_potSize;
 }
 
-void HoneyPot::addPortion()
+void HoneyPot::AddPortion()
 {
 	++m_portions;
 }
 
-void HoneyPot::popPortion()
+void HoneyPot::PopPortion()
 {
 	--m_portions;
 }
