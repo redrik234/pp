@@ -10,8 +10,16 @@ using namespace std;
 
 int main(int argc, char * argv[])
 {
-	size_t potSize = 20;
-	size_t beeCount = 30;
+
+	if (argc != 3)
+	{
+		cout << ">Invalid count of arguments!\n"
+			<< "Use: BearBeesAndHoneyd.exe <pot size> <bee count>\n";
+		return 1;
+	}
+
+	size_t potSize = atoi(argv[1]);
+	size_t beeCount = atoi(argv[2]);
 
 	Event signalToWakeUpBear = Event(FALSE);
 	Event signalForBeesToWork = Event(TRUE);

@@ -14,14 +14,14 @@ void Bear::EatHoney()
 	{
 		m_signalToWakeUpBear.Wait();
 		
-		std::printf("-> Bear eats honey \n");
+		std::printf("======================================\n-> Bear eats honey \n");
 
 		while (!m_honeyPot.IsEmpty())
 		{
 			m_honeyPot.PopPortion();
 		}
 
-		std::printf("-> Bear: Eat well! Now I can sleep\n");
+		std::printf("-> Bear: - Eat well! Now I can sleep\n======================================\n");
 
 		m_signalForBeesToWork.On();
 		m_signalToWakeUpBear.Off();

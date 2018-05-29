@@ -43,7 +43,7 @@ void Bee::CollectsAndBearsHoney()
 		if (m_honeyPot.IsFull())
 		{
 			m_signalForBeesToWork.Off();
-			std::printf("-> Honey pot is full! Call the Kraken!!! #%zu\n", m_id);
+			std::printf("-> Bee #%zu: - Honey pot is full! Call the Kraken!!!\n", m_id);
 			m_signalToWakeUpBear.On();
 		}
 		m_workingHours.Release(1);
