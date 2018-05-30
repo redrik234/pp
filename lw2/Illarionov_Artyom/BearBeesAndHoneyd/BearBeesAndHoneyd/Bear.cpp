@@ -2,9 +2,9 @@
 #include "Bear.h"
 
 Bear::Bear(HoneyPot & honeyPot, Event & signalToWakeUpBear, Event & signalForBeesToWork)
-	:m_honeyPot(honeyPot)
-	,m_signalToWakeUpBear(signalToWakeUpBear)
-	,m_signalForBeesToWork(signalForBeesToWork)
+	: m_honeyPot(honeyPot)
+	, m_signalToWakeUpBear(signalToWakeUpBear)
+	, m_signalForBeesToWork(signalForBeesToWork)
 {
 }
 

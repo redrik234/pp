@@ -11,22 +11,22 @@ namespace
 
 Bee::Bee(size_t id, HoneyPot & honeyPot, Event & signalForBeesToWork
 		, Event & signalToWakeUpBear, Semaphore & workingHours)
-	:m_id(id)
-	,m_honeyPot(honeyPot)
-	,m_signalForBeesToWork(signalForBeesToWork)
-	,m_signalToWakeUpBear(signalToWakeUpBear)
-	,m_workingHours(workingHours)
+	: m_id(id)
+	, m_honeyPot(honeyPot)
+	, m_signalForBeesToWork(signalForBeesToWork)
+	, m_signalToWakeUpBear(signalToWakeUpBear)
+	, m_workingHours(workingHours)
 {
 }
 
 void Bee::CollectsAndBearsHoney()
 {
-	std::mt19937 gen{ std::random_device()() };
-	std::uniform_int_distribution<int> uid(MIN_FLIGHT_TIME, MAX_FLIGHT_TIME);
+	std::mt19937 generator{ std::random_device()() };
+	std::uniform_int_distribution<int> rand(MIN_FLIGHT_TIME, MAX_FLIGHT_TIME);
 
 	while (1)
 	{
-		unsigned flightTime = uid(gen);
+		unsigned flightTime = rand(generator);
 
 		Sleep(flightTime);
 

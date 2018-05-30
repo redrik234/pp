@@ -2,8 +2,8 @@
 #include "HoneyPot.h"
 
 HoneyPot::HoneyPot(size_t potSize)
-	:m_potSize(potSize)
-	,m_portions(0)
+	: m_potSize(potSize)
+	, m_portions(0)
 {
 }
 
