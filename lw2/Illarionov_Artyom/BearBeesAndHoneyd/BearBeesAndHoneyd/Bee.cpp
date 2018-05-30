@@ -6,6 +6,7 @@ namespace
 {
 	const size_t MIN_FLIGHT_TIME = 150;
 	const size_t MAX_FLIGHT_TIME = 800;
+	const size_t ONE_BEE = 1;
 }
 
 Bee::Bee(size_t id, HoneyPot & honeyPot, Event & signalForBeesToWork
@@ -44,7 +45,7 @@ void Bee::CollectsAndBearsHoney()
 			std::printf("-> Bee #%zu: - Honey pot is full! Call the Kraken!!!\n", m_id);
 			m_signalToWakeUpBear.On();
 		}
-		m_workingHours.Release(1);
+		m_workingHours.Release(ONE_BEE);
 	}
 }
 

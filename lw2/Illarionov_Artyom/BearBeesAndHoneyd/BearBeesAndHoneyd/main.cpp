@@ -8,14 +8,16 @@
 
 using namespace std;
 
+static const size_t ARG_COUNT = 3;
+
 int main(int argc, char * argv[])
 {
 
-	if (argc != 3)
+	if (argc != ARG_COUNT)
 	{
 		cout << ">Invalid count of arguments!\n"
 			<< "Use: BearBeesAndHoneyd.exe <pot size> <bee count>\n";
-		return 1;
+		return EXIT_FAILURE;
 	}
 
 	size_t potSize = atoi(argv[1]);
@@ -47,5 +49,5 @@ int main(int argc, char * argv[])
 
 	handler.JoinAll();
 
-	return 0;
+	return EXIT_SUCCESS;
 }
