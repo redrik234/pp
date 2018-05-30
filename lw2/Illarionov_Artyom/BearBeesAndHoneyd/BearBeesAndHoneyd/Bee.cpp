@@ -25,8 +25,6 @@ void Bee::CollectsAndBearsHoney()
 
 	while (1)
 	{
-		
-
 		unsigned flightTime = uid(gen);
 
 		Sleep(flightTime);
